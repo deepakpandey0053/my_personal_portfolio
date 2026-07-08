@@ -18,7 +18,7 @@ const Career = () => {
                 <h4>B.Tech (Computer Science)</h4>
                 <h5>GL Bajaj Group of Institutions, Mathura</h5>
               </div>
-              <h3>2024</h3>
+              <h3>2028</h3>
             </div>
             <p>
               Pursuing Bachelor of Technology with a focus on computer science
