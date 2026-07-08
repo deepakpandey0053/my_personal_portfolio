@@ -51,7 +51,7 @@ However:
 
 Any usage, extraction, or redistribution of that avatar from my live website is strictly prohibited.
 
----
+---now you can preview the<img width="1007" height="777" alt="Image" src="https://github.com/user-attachments/assets/5bfc5d64-afc5-49f0-aceb-49aeeb2e2079" />
 
 
 
