@@ -25,14 +25,16 @@ const WorkImage = (props: Props) => {
     <div className="work-image">
       <a
         className="work-image-in"
-        href={props.link}
+        href={props.link || undefined}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsVideo(false)}
-        target="_blank"
-        data-cursor={"disable"}
+        target={props.link ? "_blank" : undefined}
+        rel={props.link ? "noopener noreferrer" : undefined}
+        data-cursor={props.link ? "disable" : undefined}
+        style={{ cursor: props.link ? "pointer" : "default" }}
       >
         {props.link && (
-          <div className="work-link">
+          <div className="work-link" title="Open Project">
             <MdArrowOutward />
           </div>
         )}

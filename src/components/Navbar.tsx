@@ -13,31 +13,46 @@ const Navbar = () => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
+      smooth: 0.8,
+      effects: false,
+      smoothTouch: 0,
       ignoreMobileResize: true,
     });
 
     smoother.scrollTop(0);
     smoother.paused(true);
 
-    let links = document.querySelectorAll(".header ul a");
+    const links = document.querySelectorAll(".header ul a");
+    const linkHandlers: { elem: HTMLAnchorElement; handler: (e: MouseEvent) => void }[] = [];
+
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
+      const element = elem as HTMLAnchorElement;
+      const handler = (e: MouseEvent) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+          const target = e.currentTarget as HTMLAnchorElement;
+          const section = target.getAttribute("data-href");
+          if (section) {
+            smoother.scrollTo(section, true, "top top");
+          }
         }
-      });
+      };
+      element.addEventListener("click", handler);
+      linkHandlers.push({ elem: element, handler });
     });
-    window.addEventListener("resize", () => {
+
+    const onResize = () => {
       ScrollSmoother.refresh(true);
-    });
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      linkHandlers.forEach(({ elem, handler }) => {
+        elem.removeEventListener("click", handler);
+      });
+      smoother?.kill();
+    };
   }, []);
   return (
     <>

@@ -26,3 +26,6 @@ dist-ssr
 
 backup/
 .env
+*.zip
+projects_upload/
+*.tsbuildinfo
